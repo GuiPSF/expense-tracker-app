@@ -6,10 +6,12 @@ exports.addExpense = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const { icon, category, amount, date } = req.body;
+    //, date
+    const { icon, category, amount } = req.body;
 
     //Validation for missing fields
-    if (!category || !amount || !date) {
+    //|| !date
+    if (!category || !amount) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -18,7 +20,7 @@ exports.addExpense = async (req, res) => {
       icon,
       category,
       amount,
-      date: new Date(date),
+      // date: new Date(date),
     });
 
     await newExpense.save();
